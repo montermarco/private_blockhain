@@ -37,7 +37,9 @@ You should see in your terminal a message indicating that the server is listenin
    ![Request: http://localhost:8000/validation]
    ![alt text](https://res.cloudinary.com/dltkj4r4x/image/upload/v1612151862/Udacity/Screen_Shot_2021-01-31_at_21.21.21.png "7")
 
- 
+  > Postman collection - https://www.getpostman.com/collections/73e4197fb130e76c681c   
+
+
 Happy Coding! 🚀
 
 ---
