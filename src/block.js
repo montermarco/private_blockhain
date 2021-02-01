@@ -44,14 +44,14 @@ class Block {
     validate() {
         let self = this;
         return new Promise((resolve, reject) => {
-            let current_hash = self.hash;
+            let currenHash = self.hash;
 						self.hash = null;
 
             const hashToCompare = SHA256(JSON.stringify(self)).toString();
 
-						self.hash = current_hash;
+						self.hash = currenHash;
 
-            if (current_hash == hashToCompare) {
+            if (currenHash == hashToCompare) {
               return resolve(true);
             } else {
               return resolve(false);
