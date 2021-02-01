@@ -15,7 +15,7 @@ You should see in your terminal a message indicating that the server is listenin
     
 3. Make your first request of ownership sending your wallet address:
    ![Request: http://localhost:8000/requestValidation]
-   ![alt text](https://res.cloudinary.com/dltkj4r4x/image/upload/v1612151852/Udacity/Screen_Shot_2021-01-31_at_21.23.09.png "3")
+   ![alt text](https://res.cloudinary.com/dltkj4r4x/image/upload/v1612151895/Udacity/Screen_Shot_2021-01-31_at_21.19.44.png "3")
 
 
 4. Sign the message with your Wallet:
