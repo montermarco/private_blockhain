@@ -44,17 +44,10 @@ class Block {
         let self = this;
         return new Promise((resolve, reject) => {
             let currenHash = self.hash;
-						self.hash = null;
-
+						self.hash = null
             const hashToCompare = SHA256(JSON.stringify(self)).toString();
-
-						self.hash = currenHash;
-
-            if (currenHash == hashToCompare) {
-              return resolve(true);
-            } else {
-              return resolve(false);
-            }
+						self.hash = currenHash;        
+            return resolve(currenHash === hashToCompare);                        
         });
     }
 
@@ -73,17 +66,8 @@ class Block {
      */
     getBData() {
         let self  = this;
-        return new Promise((resolve, reject) => {
-          let decodedData = JSON.parse(hex2ascii(self.body));
-
-          if(self.length === 0){
-            reject("There is no Genesis Block");
-          } else {
-            resolve(decodedData);
-          }
-        });
+        return JSON.parse(hex2ascii(self.body));
     }
-
 }
 
 module.exports.Block = Block;                    // Exposing the Block class as a module
