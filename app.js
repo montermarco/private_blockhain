@@ -6,9 +6,9 @@
  * - `morgan` Isn't required but help with debugging and logging
  * - `body-parser` This module allows to parse the body of the post request into a JSON
  */
-const express = require("express");
-const morgan = require("morgan");
-const bodyParser = require("body-parser");
+
+const { port, express, morgan, bodyParser} = require('./config')
+
 /**
  * Require the Blockchain class. This allow us to have only one instance of the class.
  */
@@ -32,7 +32,7 @@ class ApplicationServer {
 	}
 
 	initExpress() {
-		this.app.set("port", 8000);
+		this.app.set("port", port);
 	}
 
 	initExpressMiddleWare() {

@@ -123,12 +123,14 @@ class BlockchainController {
   chainValidation(){
     this.app.get("/validation", async (req, res) => {
       try {
-        let validation = await this.blockchain.validateChain();
-        if(validation){
-          return res.status(200).send("Validation succesfully completed ...");
-          } else {
+        if(this.blockchain.height > 0){
+          let validation = await this.blockchain.validateChain();        
+          if(validation){
+            return res.status(200).send("Validation succesfully completed ...");
+            } else {
             return res.status(404).json(validation);
-          }
+            }
+        }
       } catch (error) {
         console.log(error)
       }

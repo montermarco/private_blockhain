@@ -7,10 +7,8 @@
  *  isn't a persisten storage method.
  *  
  */
-
-const SHA256 = require('crypto-js/sha256');
 const BlockClass = require('./block.js');
-const bitcoinMessage = require('bitcoinjs-message');
+const { SHA256, bitcoinMessage,} = require('../config');
 
 class Blockchain {
 
@@ -70,7 +68,7 @@ class Blockchain {
              block.previousBlockHash = self.chain[self.chain.length -1].hash;
             } 
             block.height = self.chain.length;
-            block.timeStamp = new Date().getTime().toString().slice(0,-3);
+            block.time = new Date().getTime().toString().slice(0,-3);
             block.hash = SHA256(JSON.stringify(block)).toString();
             self.validateChain();
             self.chain.push(block)
@@ -150,7 +148,7 @@ class Blockchain {
     getBlockByHash(hash) {
       let self = this;
       return new Promise((resolve, reject) => {
-          let block = self.chain.filter(p => p.hash === hash)[0];
+          let block = self.chain.find(p => p.hash === hash);
           if(block){
               resolve(block);
           } else {
@@ -167,7 +165,7 @@ class Blockchain {
     getBlockByHeight(height) {
       let self = this;
       return new Promise((resolve, reject) => {
-          let block = self.chain.filter(p => p.height === height)[0];
+          let block = self.chain.find(p => p.height === height);
           if(block){
               resolve(block);
           } else {
@@ -219,8 +217,8 @@ class Blockchain {
                 await block.validate() ? true : errorLog.push("Genesis Block validation conflict");
               } else {
                 await block.validate() ? true : errorLog.push("Hash validation conflict");
+                block.previousBlockHash === self.chain[block.height-1].hash ? true : errorLog.push("Height validation conflict");
               };
-              block.previousBlockHash === self.hash ? true : errorLog.push("Height validation conflict");
             }))
           } catch (error) {
             reject(error)
